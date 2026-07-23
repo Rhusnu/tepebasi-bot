@@ -17,38 +17,40 @@ def send_telegram_message(message):
     return response.json()
 
 def main():
-    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
+    ajax_url = "https://tepebasihem.meb.k12.tr/tema/icerik_listele_ajax.php"
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+        'X-Requested-With': 'XMLHttpRequest',
+        'Referer': 'https://tepebasihem.meb.k12.tr/icerikler/icerikler/listele_69556_Haberler'
+    }
+    data = {
+        'kategori': '69556',
+        'start': '0',
+        'length': '1000'
+    }
+    
     try:
-        response = requests.get(URL, headers=headers, timeout=15)
+        response = requests.post(ajax_url, headers=headers, data=data, timeout=15)
         response.raise_for_status()
+        json_data = response.json()
     except Exception as e:
-        print(f"Error fetching the URL: {e}")
+        print(f"Error fetching the API: {e}")
         return
 
-    soup = BeautifulSoup(response.content, 'html.parser')
-    
-    # Tüm linkleri al
-    news_items = soup.find_all('a')
-    latest_news_title = None
-    latest_news_link = None
-    
-    for item in news_items:
-        href = item.get('href', '')
-        title = item.get_text(strip=True)
-        # Haber veya duyuru linki mi diye kontrol et
-        if href and title and ('/icerikler/' in href and href.endswith('.html')):
-            if len(title) > 5: 
-                # Tarih kısmı genelde başlığın sonuna bitişik yazılıyor (örn: KURSU17-07-2026)
-                # Orijinal başlığı almak için temizleyebiliriz ama olduğu gibi kullanmak da güvenli
-                latest_news_title = title
-                latest_news_link = href
-                if not latest_news_link.startswith('http'):
-                    latest_news_link = "https://tepebasihem.meb.k12.tr" + latest_news_link
-                break
-                
-    if not latest_news_title:
+    items = json_data.get('data', [])
+    if not items:
         print("Sayfada hic duyuru veya haber bulunamadi.")
         return
+        
+    # En yeni haberi bulmak için SIRAID değerine göre büyükten küçüğe sırala
+    items.sort(key=lambda x: int(x.get('SIRAID', 0)), reverse=True)
+    
+    latest_item = items[0]
+    latest_news_title = latest_item.get('BASLIK', '').replace('&quot;', '"')
+    latest_news_link = latest_item.get('LINK', '')
+    
+    if latest_news_link and not latest_news_link.startswith('http'):
+        latest_news_link = "https://tepebasihem.meb.k12.tr" + latest_news_link
         
     print(f"En son haber/duyuru bulundu: {latest_news_title}")
     
@@ -60,7 +62,6 @@ def main():
             
     if latest_news_title != last_news_saved:
         print("YENI BIR HABER/DUYURU VAR!")
-        # URL'deki boşlukları vb kodlayarak düzgün link yapalım
         clean_link = latest_news_link.replace(" ", "%20")
         message = f"🚨 **YENİ KURS/HABER DUYURUSU** 🚨\n\n📌 *{latest_news_title}*\n\n🔗 [Detayları Gör]({clean_link})"
         send_telegram_message(message)
