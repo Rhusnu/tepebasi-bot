@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
-URL = "https://tepebasihem.meb.k12.tr/icerikler/icerikler/listele_69556_Haberler"
+URL = "https://tepebasihem.meb.k12.tr"
 LAST_NEWS_FILE = "last_news.txt"
 
 def send_telegram_message(message):
