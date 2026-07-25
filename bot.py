@@ -1,20 +1,25 @@
 import os
 import requests
-from bs4 import BeautifulSoup
 
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
-URL = "https://tepebasihem.meb.k12.tr"
 LAST_NEWS_FILE = "last_news.txt"
 
 def send_telegram_message(message):
     if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
-        print("Telegram credentials not found. Skipping message.")
-        return
+        print("HATA: Telegram credentials (TOKEN veya CHAT_ID) bulunamadi!")
+        return None
     
-    send_text = f'https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage?chat_id={TELEGRAM_CHAT_ID}&parse_mode=Markdown&text={message}'
-    response = requests.get(send_text)
-    return response.json()
+    url = f'https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage'
+    payload = {
+        'chat_id': TELEGRAM_CHAT_ID,
+        'text': message,
+        'parse_mode': 'Markdown'
+    }
+    response = requests.post(url, data=payload)
+    result = response.json()
+    print(f"Telegram API yaniti: {result}")
+    return result
 
 def main():
     ajax_url = "https://tepebasihem.meb.k12.tr/tema/icerik_listele_ajax.php"
@@ -28,49 +33,56 @@ def main():
         'start': '0',
         'length': '1000'
     }
-    
+
     try:
         response = requests.post(ajax_url, headers=headers, data=data, timeout=15)
         response.raise_for_status()
         json_data = response.json()
     except Exception as e:
-        print(f"Error fetching the API: {e}")
+        print(f"HATA: API'ye erisilemedi: {e}")
         return
 
     items = json_data.get('data', [])
     if not items:
-        print("Sayfada hic duyuru veya haber bulunamadi.")
+        print("Sayfada hic haber bulunamadi.")
         return
-        
-    # En yeni haberi bulmak için SIRAID değerine göre büyükten küçüğe sırala
+
+    # En yeni haberi SIRAID'e gore sirala (buyuk = yeni)
     items.sort(key=lambda x: int(x.get('SIRAID', 0)), reverse=True)
-    
+
     latest_item = items[0]
-    latest_news_title = latest_item.get('BASLIK', '').replace('&quot;', '"')
+    latest_news_title = latest_item.get('BASLIK', '').replace('&quot;', '"').strip()
     latest_news_link = latest_item.get('LINK', '')
-    
+
     if latest_news_link and not latest_news_link.startswith('http'):
         latest_news_link = "https://tepebasihem.meb.k12.tr" + latest_news_link
-        
-    print(f"En son haber/duyuru bulundu: {latest_news_title}")
-    
+
+    print(f"Sitedeki en son haber: {latest_news_title}")
+
     # Kaydedilen son haberi oku
     last_news_saved = ""
     if os.path.exists(LAST_NEWS_FILE):
         with open(LAST_NEWS_FILE, 'r', encoding='utf-8') as f:
             last_news_saved = f.read().strip()
-            
+
+    print(f"Kayitli son haber: {last_news_saved}")
+
     if latest_news_title != last_news_saved:
-        print("YENI BIR HABER/DUYURU VAR!")
-        clean_link = latest_news_link.replace(" ", "%20")
-        message = f"🚨 **YENİ KURS/HABER DUYURUSU** 🚨\n\n📌 *{latest_news_title}*\n\n🔗 [Detayları Gör]({clean_link})"
+        print("*** YENI HABER BULUNDU! Telegram mesaji gonderiliyor... ***")
+        message = (
+            f"🚨 *YENİ KURS/HABER DUYURUSU* 🚨\n\n"
+            f"📌 *{latest_news_title}*\n\n"
+            f"🔗 [Detayları Görüntüle]({latest_news_link})\n\n"
+            f"👉 Hemen kayıt olmayı unutma!"
+        )
         send_telegram_message(message)
-        
-        # Dosyaya yeni haberi yaz
+
+        # Yeni haberi dosyaya kaydet
         with open(LAST_NEWS_FILE, 'w', encoding='utf-8') as f:
             f.write(latest_news_title)
+        print("Yeni haber dosyaya kaydedildi.")
     else:
-        print("Yeni bir haber yok, son haber ayni.")
+        print("Yeni haber yok. Sistem normal calisıyor.")
 
 if __name__ == "__main__":
     main()
