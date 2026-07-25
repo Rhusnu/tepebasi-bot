@@ -8,12 +8,27 @@ LAST_NEWS_FILE = "last_news.txt"
 def send_telegram_message(message):
     if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
         print("Telegram credentials not found. Skipping message.")
+        print(f"  BOT_TOKEN set: {bool(TELEGRAM_BOT_TOKEN)}")
+        print(f"  CHAT_ID set: {bool(TELEGRAM_CHAT_ID)}")
         return
+
+    url = f'https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage'
+    payload = {
+        'chat_id': TELEGRAM_CHAT_ID,
+        'text': message
+    }
     
-    send_text = f'https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage?chat_id={TELEGRAM_CHAT_ID}&parse_mode=Markdown&text={message}'
-    response = requests.get(send_text)
-    print(f"Telegram response: {response.json()}")
-    return response.json()
+    try:
+        response = requests.post(url, json=payload, timeout=10)
+        result = response.json()
+        print(f"Telegram API response: {result}")
+        if not result.get('ok'):
+            print(f"HATA: Telegram mesaji gonderilemedi! {result.get('description', '')}")
+        else:
+            print("Telegram mesaji basariyla gonderildi!")
+        return result
+    except Exception as e:
+        print(f"Telegram API hatasi: {e}")
 
 def main():
     ajax_url = "https://tepebasihem.meb.k12.tr/tema/icerik_listele_ajax.php"
