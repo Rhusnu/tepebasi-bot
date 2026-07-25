@@ -5,7 +5,10 @@ on:
     # Her 15 dakikada bir çalıştır (7/24)
     - cron: '*/15 * * * *'
   # Manuel tetikleme (GitHub üzerinden "Run workflow" butonu ile)
-  workflow_dispatch:
+    workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   scrape-and-notify:
