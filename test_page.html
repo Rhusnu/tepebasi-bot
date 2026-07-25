@@ -1,0 +1,356 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="google-site-verification" content="7YaELQAw3Nn0PgkW1rFGrE10IPe2z4Ml3bYBm-XRCkU" />
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="description" content="T.C. MİLLÎ EĞİTİM BAKANLIĞI ESKİŞEHİR / TEPEBAŞI / Tepebaşı Halk Eğitimi Merkezi" />
+	<meta name="Author" content="T.C. MİLLÎ EĞİTİM BAKANLIĞI ESKİŞEHİR / TEPEBAŞI / Tepebaşı Halk Eğitimi Merkezi">
+	<meta name="copyright" content="T.C. MİLLÎ EĞİTİM BAKANLIĞI ESKİŞEHİR / TEPEBAŞI / Tepebaşı Halk Eğitimi Merkezi Copyright 2015">
+	<meta http-equiv="keywords" content="T.C. MİLLÎ EĞİTİM BAKANLIĞI ESKİŞEHİR / TEPEBAŞI / Tepebaşı Halk Eğitimi Merkezi">
+	<meta name="theme-color" content="#E72737" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="-1" />
+	<meta name="robots" content="ALL" />
+	<meta name="Rating" content="General" />
+	<meta name="Distribution" content="Global " />
+	<meta name="Classification" content="Consumer" />
+	<meta name="twitter:title" content="T.C. MİLLÎ EĞİTİM BAKANLIĞI ESKİŞEHİR / TEPEBAŞI / Tepebaşı Halk Eğitimi Merkezi" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="T.C. MİLLÎ EĞİTİM BAKANLIĞI ESKİŞEHİR / TEPEBAŞI / Tepebaşı Halk Eğitimi Merkezi" />
+	<meta name="twitter:creator" content="T.C. MİLLÎ EĞİTİM BAKANLIĞI ESKİŞEHİR / TEPEBAŞI / Tepebaşı Halk Eğitimi Merkezi" />
+	<meta name="twitter:description" content="Haberler" />
+	<meta name="twitter:image" content="https://tepebasihem.meb.k12.tr/tema/meblogo.png" />
+	<meta property="og:url" content="https://tepebasihem.meb.k12.tr/icerikler/icerikler/listele_69556_Haberler" />
+	<meta property="og:type" content="news" />
+	<meta property="og:title" content="T.C. MİLLÎ EĞİTİM BAKANLIĞI ESKİŞEHİR / TEPEBAŞI / Tepebaşı Halk Eğitimi Merkezi" />
+	<meta property="og:description" content="Haberler" />
+	<meta property="og:image" content="https://tepebasihem.meb.k12.tr/tema/meblogo.png" />
+	<link rel="icon" type="image/png" href="/tema/favicon.ico" />
+	<title>Haberler</title>
+	<link rel="shortcut icon" href="/tema/tema/6/assets/images/meb-logo.png" type="image/png" />
+
+	<!-- Site Style -->
+	<link rel="stylesheet" href="/tema/tema/6/assets/css/component/jquery.fancybox.min.css">
+	<link rel="stylesheet" href="/tema/tema/6/assets/css/style.css">
+	<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+		<![endif]-->
+	<!-- Jquery 3.3.1 -->
+	<script src="/tema/tema/6/assets/js/jquery-3.3.1.min.js"></script>
+	<!-- Bootstrap with Popover -->
+	<script src="/tema/tema/6/assets/js/bootstrap.bundle.min.js"></script>
+	<script src="/tema/tema/6/assets/js/jquery.fancybox.min.js"></script>
+	<!-- SuperFish Menu-->
+	<script src="/tema/tema/6/assets/js/hoverIntent.js"></script>
+	<script src="/tema/tema/6/assets/js/superfish.min.js"></script>
+	<script src="/tema/tema/6/assets/js/supersubs.js"></script>
+	<!-- Mobil Menu -->
+	<script src="/tema/tema/6/assets/js/jquery.mmenu.js"></script>
+	<!-- Owl Carausel -->
+	<script src="/tema/tema/6/assets/js/owl.carousel.min.js"></script>
+	<script type="text/javascript" src="/tema/tema/6/assets/js/meb_menu.js"></script>
+	<!--<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5bd08d7e04e01249"></script>-->
+
+	<script>
+		jQuery(document).ready(function() {
+			jQuery('ul.sf-menu').supersubs({
+				minWidth: 12, // minimum width of submenus in em units
+				maxWidth: 27, // maximum width of submenus in em units
+				extraWidth: 1 // extra width can ensure lines don't sometimes turn over
+				// due to slight rounding differences and font-family
+			}).superfish(); // call supersubs first, then superfish, so that subs are
+
+
+			$('.projeler-slider').owlCarousel({
+				loop: true,
+				margin: 20,
+				nav: false,
+				dots: false,
+				autoplay: true,
+				autoplayTimeout: 3000,
+				autoplayHoverPause: true,
+				responsive: {
+					320: {
+						items: 1
+					},
+					321: {
+						items: 2
+					},
+					600: {
+						items: 3
+					},
+					1000: {
+						items: 6
+					}
+				}
+			})
+
+			/* #Search Start */
+			$('a[href="#search"]').on('click', function(event) {
+				event.preventDefault();
+				$('#search').addClass('open');
+				$('#search > form > input[type="search"]').focus();
+			});
+
+			$('#search, #search button.close').on('click keyup', function(event) {
+				if (event.target == this || event.target.className == 'close' || event.keyCode == 27) {
+					$(this).removeClass('open');
+				}
+			});
+
+			//Do not include! This prevents the form from submitting for DEMO purposes only!
+			$('form#ara').submit(function(event) {
+				event.preventDefault();
+				return false;
+			})
+			/* #Search End */
+
+			$('.vlightbox1, .thickbox').attr("data-fancybox", "gallery").fancybox({
+				lang: 'tr',
+
+				i18n: {
+					'tr': {
+						CLOSE: "Kapat",
+						NEXT: "Sonraki",
+						PREV: "Önceki",
+						ERROR: "İstenilen içerik yüklenemedi. <br/> Lütfen daha sonra tekrar deneyin.",
+						PLAY_START: "Slideshow'u Başlat",
+						PLAY_STOP: "Slideshow'u Duraklat",
+						FULL_SCREEN: "Tam Ekran",
+						THUMBS: "Diğer Fotoğraflar",
+						DOWNLOAD: "İndir",
+						SHARE: "Paylaş",
+						ZOOM: "Yakınlaştır"
+					}
+				}
+			});
+
+		});
+	</script>
+	<!-- Google tag (gtag.js) -->
+	<!-- <script async src="https://www.googletagmanager.com/gtag/js?id="></script> -->
+	<script>
+		// window.dataLayer = window.dataLayer || [];
+
+		// function gtag() {
+		// 	dataLayer.push(arguments);
+		// }
+		// gtag('js', new Date());
+
+		// gtag('config', '');
+	</script>
+</head>
+
+<body>
+	<div id="meb">
+		<div class="header-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<ul>
+							<li><a href="javascript:void(0)"><i class="fas fa-phone"></i> (222) 335 5403</a></li>
+							<li><a href="/tema/iletisim.php"><i class="far fa-envelope"></i> <span>İletişim</span></a></li>
+							<li><a href="#search"><i class="fas fa-search"></i> <span>Arama Yap</span></a></li>
+							<li><a href="/tema/siteharitasi.php"><i class="fas fa-sitemap"></i> <span>Site Haritası</span></a></li>
+							<li><a href="/tema/index.php"><i class="fas fa-home"></i> <span>Anasayfa</span></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<header class="header">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<a href="/tema/index.php" target="_self" class="logo">
+							<img src="/tema/tema/6/assets/images/meb-logo.png" alt="Millî Eğitim Bakanlığı" />
+							<span class="meb-baslik">ESKİŞEHİR / TEPEBAŞI</span>
+							<span class="okul-baslik">Tepebaşı Halk Eğitimi Merkezi</span>
+						</a>
+						<a href="#" target="_blank" class="ataturk-kosesi">
+							<img src="/tema/tema/6/assets/images/ataturk.png" alt="Atatürk Köşesi" />
+						</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<nav class="site-menu">
+			<div class="container">
+				<ul class="sf-menu d-none d-xl-block" id="top-menu"></ul>
+				<a href="#mobile-menu" class="d-xl-none menu-buton"><i class="fas fa-bars"></i></a>
+			</div>
+		</nav>
+		<div id="search">
+			<button type="button" class="close">X</button>
+			<form action="https://www.google.com/custom" method="get" name="form1" target="google_window">
+				<input type="search" id="araTextBox" name="q" placeholder="Arama yapmak için kelime giriniz" />
+				<input type="hidden" name="sitesearch" value="https://tepebasihem.meb.k12.tr" />
+				<input type="hidden" name="client" value="pub-" />
+				<input type="hidden" name="forid" value="1" />
+				<input type="hidden" name="ie" value="ISO-8859-9" />
+				<input type="hidden" name="oe" value="ISO-8859-9" />
+				<input type="hidden" name="domains" value="https://tepebasihem.meb.k12.tr" />
+				<input type="hidden" name="hl" value="tr" />
+				<button type="submit" class="btn btn-danger">Ara</button>
+			</form>
+		</div><link rel="stylesheet" href="/tema/tema/assets/css/dataTables.css">
+<div class="ic-sayfa">
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-12 icerik">
+				<nav aria-label="breadcrumb" class="bc">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="/tema/index.php">Anasayfa</a></li>
+						<li class="breadcrumb-item"><a href="#">Haberler</a></li>
+					</ol>
+				</nav>
+				<div class="icerik-yazi">
+					<div class="row">
+						<div class="col-12">
+							<h1 class="baslik">Haberler <a style="display: none;" class="float-right btn btn-danger" href="/tema/icerik.php?KATEGORINO=69556"><i class="far fa-folder-open"></i> Arşiv</a></h1>
+													</div>
+					</div>
+					<div class="responsive-table mb-3">
+												<table id="icerik-listesi" class="icerik-listesi " data-kategori="69556" data-kategori-adi="1">
+							<thead>
+								<tr>
+									<th>Tarih</th>
+									<th>Başlık</th>
+								</tr>
+							</thead>
+							<tfoot>
+								<tr>
+									<th>Tarih</th>
+									<th>Başlık</th>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="/tema/tema/assets/js/dataTables.js"></script>
+	<script type="text/javascript">
+		let kategori = $('#icerik-listesi').attr('data-kategori');
+		let dil_json = '/tema/tema/assets/json/turkish.json';
+		var dataTable = $('#icerik-listesi').DataTable({
+			pageLength: 25,
+			lengthMenu: [
+				[10, 25, 50, 100],
+				[10, 25, 50, 100]
+			],
+			order: [
+				[2, 'desc']
+			],
+			ajax: {
+				url: '/tema/icerik_listele_ajax.php',
+				method: 'POST',
+				data: function(response) {
+					return $.extend({}, response, {
+						"kategori": kategori
+					});
+				}
+			},
+			search: {
+				return: true
+			},
+			processing: true,
+			serverSide: true,
+			columns: [{
+					data: 'BASLANGICTARIHI'
+				},
+				{
+					data: 'BASLIK'
+				},
+				{
+					data: 'SIRAID'
+				}
+			],
+			columnDefs: [{
+					render: function(data, type, row) {
+						let html = `<a href="${row.LINK}" target="${row.TARGET}"> ${row.BASLIK}</a>`;
+						return html;
+					},
+					target: 1
+				},
+				{
+					target: 2,
+					visible: false
+				},
+				{
+					searchable: false,
+					targets: [0, 2]
+				}
+			],
+			language: {
+				url: dil_json
+			},
+
+		});
+	</script>
+	<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6">
+				<h1>İLETİŞİM</h1>
+				<p>
+					<strong>Adres: </strong><br>
+					Uluönder Mah. Erzurum Kongresi Cd. Yakapınar Sk.Tepebaşı / ESKİŞEHİR				</p>
+				<hr />
+				<p class="float-left">
+					<strong>Telefon</strong><br>
+					(222) 335 5403<br>
+					<br>
+					<br>
+				</p>
+				<a href="https://tepebasihem.meb.k12.tr/tema/eposta/eposta_gonder.php?KeepThis=true&width=50&height=75&TB_iframe=true" data-type="iframe" class="eposta float-right iframe" style="margin-top:12px" title="Eposta Gönder">e-Posta Göndermek İçin Tıklayın </a>
+			</div>
+			<div class="col-lg-6">
+				<a href="/tema/harita.php?R=1">
+					<img src="/tema/tema/6/assets/images/footer-map.png" alt="" class="img-fluid">
+				</a>
+			</div>
+			<hr />
+		</div>
+	</div>
+</footer>
+<div class="footer-info">
+	MEB © - Tüm Hakları Saklıdır. Gizlilik, Kullanım ve Telif Hakları bildiriminde belirtilen kurallar çerçevesinde
+	hizmet sunulmaktadır.
+</div>
+<nav id="mobile-menu">
+	<ul></ul>
+</nav>
+</div>
+</body>
+
+</html>
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-4L6K8WNJCW"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-4L6K8WNJCW'); </script> 
+<script>
+	$(function() {
+		//#Menü
+		$.ajax({
+			//url: '/meb_iys_dosyalar/xml/dikmenu.xml',// name of file you want to parse
+			url: window.location.protocol + '//tepebasihem.meb.k12.tr/meb_iys_dosyalar/26/15/970372/xml/dikmenu.xml?1784827348',
+			dataType: "xml",
+			success: mainMenu,
+			error: function() {
+				alert("Error: Ana Menü Yüklenemedi");
+			}
+		});
+		$.ajax({
+			url: window.location.protocol + '//tepebasihem.meb.k12.tr/meb_iys_dosyalar/26/15/970372/xml/diksubmenu.xml?1784827348',
+			dataType: "xml",
+			success: subMenu,
+			error: function() {
+				alert("Error: Alt Menü Yüklenemedi");
+			}
+		});
+	});
+</script>
